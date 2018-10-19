@@ -1,0 +1,45 @@
+﻿@page
+@model ShoeCareHistory.Pages.ShoeMakers.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>ShoeMaker</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ShoeMaker.Id" />
+            <div class="form-group">
+                <label asp-for="ShoeMaker.Name" class="control-label"></label>
+                <input asp-for="ShoeMaker.Name" class="form-control" />
+                <span asp-validation-for="ShoeMaker.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeMaker.Country" class="control-label"></label>
+                <input asp-for="ShoeMaker.Country" class="form-control" />
+                <span asp-validation-for="ShoeMaker.Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeMaker.Established" class="control-label"></label>
+                <input asp-for="ShoeMaker.Established" class="form-control" />
+                <span asp-validation-for="ShoeMaker.Established" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

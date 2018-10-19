@@ -1,0 +1,31 @@
+﻿@page
+@model ShoeCareHistory.Pages.Histories.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>History</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.History.CareDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.History.CareDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.History.Detail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.History.Detail)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.History.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

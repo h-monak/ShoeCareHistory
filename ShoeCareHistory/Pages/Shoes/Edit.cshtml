@@ -1,0 +1,65 @@
+﻿@page
+@model ShoeCareHistory.Pages.Shoes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Shoe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Shoe.Id" />
+            <div class="form-group">
+                <label asp-for="Shoe.Name" class="control-label"></label>
+                <input asp-for="Shoe.Name" class="form-control" />
+                <span asp-validation-for="Shoe.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoe.Code" class="control-label"></label>
+                <input asp-for="Shoe.Code" class="form-control" />
+                <span asp-validation-for="Shoe.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoe.ProductName" class="control-label"></label>
+                <input asp-for="Shoe.ProductName" class="form-control" />
+                <span asp-validation-for="Shoe.ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoe.Leather" class="control-label"></label>
+                <input asp-for="Shoe.Leather" class="form-control" />
+                <span asp-validation-for="Shoe.Leather" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoe.Color" class="control-label"></label>
+                <input asp-for="Shoe.Color" class="form-control" />
+                <span asp-validation-for="Shoe.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoe.ProductionDate" class="control-label"></label>
+                <input asp-for="Shoe.ProductionDate" class="form-control" />
+                <span asp-validation-for="Shoe.ProductionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoe.PurchaseDate" class="control-label"></label>
+                <input asp-for="Shoe.PurchaseDate" class="form-control" />
+                <span asp-validation-for="Shoe.PurchaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
