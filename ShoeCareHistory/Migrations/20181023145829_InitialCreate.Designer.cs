@@ -10,8 +10,8 @@ using ShoeCareHistory.Models;
 namespace ShoeCareHistory.Migrations
 {
     [DbContext(typeof(ShoeCareHistoryContext))]
-    [Migration("20181019105504_Initial")]
-    partial class Initial
+    [Migration("20181023145829_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
