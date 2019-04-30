@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoeCareHistory.Models;
 
 namespace ShoeCareHistory.Migrations
 {
     [DbContext(typeof(ShoeCareHistoryContext))]
-    partial class ShoeCareHistoryContextModelSnapshot : ModelSnapshot
+    [Migration("20190430131033_Update_20190430")]
+    partial class Update_20190430
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
