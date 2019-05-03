@@ -52,33 +52,24 @@ namespace ShoeCareHistory.Data
             using (var sr = new StreamReader(filename))
             {
                 var line = "";
-                var rowcnt = 1;
+
                 while ((line = sr.ReadLine()) != null)
                 {
                     var data = line.Split(",");
 
-                    try
+                    if (t is Models.History)
                     {
-                        if (rowcnt != 1)
+                        var h = new Models.History
                         {
-                            if (t is Models.History)
-                            {
-                                var h = new Models.History();
-
-                                h.Id = int.Parse(data[0]);
-                                h.ShoeId = int.Parse(data[1]);
-                                h.CareDate = DateTime.Parse(data[2]);
-                                //h.SealDate = string.IsNullOrEmpty(data[3]) ? null : DateTime.Parse(data[3]);
-                                h.Detail = data[4];
-                                h.CareItemId = int.Parse(data[5]);
-
-                                list.Add(h as Type);
-                            }
-                        }
-                        rowcnt++;
+                            Id = int.Parse(data[0]),
+                            ShoeId = int.Parse(data[1]),
+                            CareDate = DateTime.Parse(data[2]),
+                            SealDate = DateTime.Parse(data[3]),
+                            Detail = data[4],
+                            CareItemId = int.Parse(data[5])
+                        };
+                        list.Add(h as Type);
                     }
-                    catch (Exception ex)
-                    { }
                 }
             }
 
