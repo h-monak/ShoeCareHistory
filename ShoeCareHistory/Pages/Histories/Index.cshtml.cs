@@ -22,7 +22,8 @@ namespace ShoeCareHistory.Pages.Histories
 
         public async Task OnGetAsync()
         {
-            History = await _context.History.ToListAsync();
+            History = await _context.History
+                .Include(h => h.Shoe).ToListAsync();
         }
     }
 }

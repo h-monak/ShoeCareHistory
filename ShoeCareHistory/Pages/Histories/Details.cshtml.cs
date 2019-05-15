@@ -27,7 +27,8 @@ namespace ShoeCareHistory.Pages.Histories
                 return NotFound();
             }
 
-            History = await _context.History.FirstOrDefaultAsync(m => m.Id == id);
+            History = await _context.History
+                .Include(h => h.Shoe).FirstOrDefaultAsync(m => m.Id == id);
 
             if (History == null)
             {
