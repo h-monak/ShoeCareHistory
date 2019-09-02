@@ -29,8 +29,8 @@ namespace ShoeCareHistory
                     var context = services.GetRequiredService<ShoeCareHistoryContext>();
 
                     // 初回DB作成 
-                    context.Database.EnsureDeleted();
-                    context.Database.EnsureCreated();
+                    //context.Database.EnsureDeleted();
+                    //context.Database.EnsureCreated();
 
                     //// 初期データ追加
                     Data.DbInitializer.Initialize(context);

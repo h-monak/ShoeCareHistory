@@ -14,26 +14,29 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.History[0].CareItemId)
+                @Html.DisplayNameFor(model => model.HistoryVM[0].ShoeName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.History[0].CareDate)
+                @Html.DisplayNameFor(model => model.HistoryVM[0].CareItemNames)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.History[0].SealDate)
+                @Html.DisplayNameFor(model => model.HistoryVM[0].CareDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.History[0].Detail)
+                @Html.DisplayNameFor(model => model.HistoryVM[0].SealDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.History[0].Shoe)
+                @Html.DisplayNameFor(model => model.HistoryVM[0].Detail)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.History) {
+@foreach (var item in Model.HistoryVM) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShoeName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CareItemId)
             </td>
@@ -45,9 +48,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Detail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shoe.Name)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
