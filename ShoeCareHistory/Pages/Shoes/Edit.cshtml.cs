@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor.Internal;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShoeCareHistory.Models;
+using ShoeCareHistory.ViewModels;
 
 namespace ShoeCareHistory.Pages.Shoes
 {
@@ -20,7 +22,7 @@ namespace ShoeCareHistory.Pages.Shoes
         }
 
         [BindProperty]
-        public Shoe Shoe { get; set; }
+        public ShoeVM ShoeVM { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +31,31 @@ namespace ShoeCareHistory.Pages.Shoes
                 return NotFound();
             }
 
-            Shoe = await _context.Shoe.FirstOrDefaultAsync(m => m.Id == id);
+            ShoeVM = await _context.Shoe
+                .Where(w => w.Id == id)
+                .Include(m => m.ShoeMaker)
+                .AsNoTracking()
+                .Select(s => new ShoeVM() {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Code = s.Code,
+                    Leather = s.Leather,
+                    Color = s.Color,
+                    Material = s.Material,
+                    IsSold = s.IsSold,
+                    ProductName = s.ProductName,
+                    ProductionDate = s.ProductionDate,
+                    PurchaseDate = s.PurchaseDate,
+                    BreakInDate = s.BreakInDate,
+                    ShoeMakerName = s.ShoeMaker.Name
+                }).FirstOrDefaultAsync();
 
-            if (Shoe == null)
+            ShoeVM.ShoeMakerList = new SelectList(_context.ShoeMaker, "", "", _context.ShoeMaker);
+
+            ViewData["ShoeMakerId"] = new SelectList(_context.ShoeMaker, "ShoeMakerId", "ShoeMakerName", ShoeVM.ShoeMaker.Id);
+                //.Include(m => m.ShoeMaker).AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
+
+            if (ShoeVM == null)
             {
                 return NotFound();
             }
@@ -45,7 +69,7 @@ namespace ShoeCareHistory.Pages.Shoes
                 return Page();
             }
 
-            _context.Attach(Shoe).State = EntityState.Modified;
+            _context.Attach(ShoeVM).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +77,7 @@ namespace ShoeCareHistory.Pages.Shoes
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ShoeExists(Shoe.Id))
+                if (!ShoeExists(ShoeVM.Id))
                 {
                     return NotFound();
                 }

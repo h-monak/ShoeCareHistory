@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ShoeCareHistory.Models;
+using ShoeCareHistory.ViewModels;
 
 namespace ShoeCareHistory.Pages.Histories
 {
@@ -18,11 +19,19 @@ namespace ShoeCareHistory.Pages.Histories
             _context = context;
         }
 
-        public IList<History> History { get;set; }
+        public IList<HistoryVM> HistoryVM { get; set; }
 
         public async Task OnGetAsync()
         {
-            History = await _context.History.ToListAsync();
+            HistoryVM = await _context.History
+                .Select(s => new HistoryVM()
+                {
+                    Id = s.Id,
+                    ShoeName = s.Shoe.Name,
+                    Detail = s.Detail,
+                    CareDate = s.CareDate,
+                    CareItemNames = s.CareItems.Select(i => i.Name).ToList()
+                }).ToListAsync();
         }
     }
 }

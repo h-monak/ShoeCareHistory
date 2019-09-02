@@ -22,7 +22,10 @@ namespace ShoeCareHistory.Pages.Shoes
 
         public async Task OnGetAsync()
         {
-            Shoe = await _context.Shoe.ToListAsync();
+            Shoe = await _context.Shoe
+                .Include(m => m.ShoeMaker)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace ShoeCareHistory.Data
                 Country = "United States",
                 Established = 1883
             };
-            var regal = new ShoeMaker
+            var regal = new ShoeMaker()
             {
                 Id = 5,
                 Name = "Regal",
@@ -80,13 +80,13 @@ namespace ShoeCareHistory.Data
             {
                 var shoemakers = new ShoeMaker[]
                 {
-                        redwing,
-                        whites,
-                        trickers,
-                        wolverine,
-                        regal,
-                        jalan,
-                        other
+                    redwing,
+                    whites,
+                    trickers,
+                    wolverine,
+                    regal,
+                    jalan,
+                    other
                 };
                 foreach (ShoeMaker sm in shoemakers) context.ShoeMaker.Add(sm);
 
@@ -100,8 +100,6 @@ namespace ShoeCareHistory.Data
             {
                 var shoes = new Shoe[]
                 {
-                    //new Shoe(){ Id = 20, Name = "877", Code ="877", ProductName = "CLASSIC-WORKS-MOC-TOE", Color = "ORO-REGACY", Leather = "COWHIDE", ProductionDate = DateTime.Parse("16-11-12"), PurchaseDate = DateTime.Parse("16-11-19"), BreakInDate = DateTime.Parse("18-02-24"), ShoeMaker = redwing }
-                
                     new Shoe(){ Id = 1,  ShoeMaker = redwing, Name = "8166", Code = "8166", ProductName = "CLASSIC WORKS ROUND TOE", Leather = "", Color = "ORO RUSSET", ProductionDate = DateTime.MinValue, PurchaseDate = DateTime.Parse("13-12-01"), BreakInDate = DateTime.Parse("13-12-01"), IsSold = false, Material = "COWHIDE"},
                     new Shoe(){ Id = 2,  ShoeMaker = redwing, Name = "8165", Code = "8165", ProductName = "CLASSIC WORKS ROUND TOE", Leather = "", Color = "BLACK CHROME", ProductionDate = DateTime.MinValue, PurchaseDate = DateTime.Parse("13-01-01"), BreakInDate = DateTime.Parse("13-01-01"), IsSold = false, Material = "COWHIDE"},
                     new Shoe(){ Id = 3,  ShoeMaker = redwing, Name = "875", Code = "875", ProductName = "CLASSIC WORKS MOC TOE", Leather = "", Color = "ORO REGACY", ProductionDate = DateTime.MinValue, PurchaseDate = DateTime.Parse("14-02-01"), BreakInDate = DateTime.Parse("14-02-01"), IsSold = false, Material = "COWHIDE"},
@@ -141,15 +139,15 @@ namespace ShoeCareHistory.Data
                 context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Shoe OFF");
             }
 
+            // CareBrand
             var redWing = new CareBrand() { Id = 1, Name = "RedWing" };
             var mowbray = new CareBrand() { Id = 2, Name = "M.Mowbray" };
             var hirano = new CareBrand() { Id = 3, Name = "Hirano" };
             var beckman = new CareBrand() { Id = 4, Name = "Beckman" };
             var renapur = new CareBrand() { Id = 5, Name = "Renapur" };
             var lexol = new CareBrand() { Id = 6, Name = "Lexol" };
-            var uw = new CareBrand() { Id = 11, Name = "Union Works" };
+            var uw = new CareBrand() { Id = 99, Name = "Union Works" };
 
-            // CareBrand
             if (!context.CareBrand.Any())
             {
                 var carebrands = new CareBrand[]

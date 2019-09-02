@@ -29,12 +29,14 @@ namespace ShoeCareHistory.Pages.Histories
                 return NotFound();
             }
 
-            History = await _context.History.FirstOrDefaultAsync(m => m.Id == id);
+            History = await _context.History
+                .Include(h => h.Shoe).FirstOrDefaultAsync(m => m.Id == id);
 
             if (History == null)
             {
                 return NotFound();
             }
+           ViewData["ShoeId"] = new SelectList(_context.Shoe, "Id", "Name");
             return Page();
         }
 

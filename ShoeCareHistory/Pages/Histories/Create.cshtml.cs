@@ -20,6 +20,7 @@ namespace ShoeCareHistory.Pages.Histories
 
         public IActionResult OnGet()
         {
+        ViewData["ShoeId"] = new SelectList(_context.Shoe, "Id", "Name");
             return Page();
         }
 

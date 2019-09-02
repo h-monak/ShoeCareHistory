@@ -14,19 +14,37 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.History[0].CareDate)
+                @Html.DisplayNameFor(model => model.HistoryVM[0].ShoeName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.History[0].Detail)
+                @Html.DisplayNameFor(model => model.HistoryVM[0].CareItemNames)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoryVM[0].CareDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoryVM[0].SealDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoryVM[0].Detail)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.History) {
+@foreach (var item in Model.HistoryVM) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ShoeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CareItemId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CareDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SealDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Detail)
