@@ -1,4 +1,4 @@
 # ShoeCareHistory
-# .Net Core
-# Razor Pages App
-# Entity Framework
+* .Net Core
+* Razor Pages App
+* Entity Framework
