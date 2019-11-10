@@ -25,6 +25,7 @@ namespace ShoeCareHistory
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -34,6 +35,10 @@ namespace ShoeCareHistory
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.Configure<MvcOptions>(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
