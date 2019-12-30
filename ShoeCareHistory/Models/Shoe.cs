@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +12,7 @@ namespace ShoeCareHistory.Models
     public class Shoe
     {
         [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -27,21 +29,23 @@ namespace ShoeCareHistory.Models
         public string Color { get; set; }
 
         [Display(Name = "Production Date")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ProductionDate { get; set; }
 
         [Display(Name = "Purchase Date")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime PurchaseDate { get; set; }
 
         [Display(Name = "Break In Date")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BreakInDate { get; set; }
 
         public bool IsSold { get; set; }
+
+        //public int? ShoeMakerId { get; set; }
 
         public ShoeMaker ShoeMaker { get; set; }
 

@@ -13,13 +13,32 @@ namespace ShoeCareHistory.Pages.Shoes
     {
         private readonly ShoeCareHistory.Models.ShoeCareHistoryContext _context;
 
+        public IEnumerable<SelectListItem> ShoeMakerList { get; set; }
+
         public CreateModel(ShoeCareHistory.Models.ShoeCareHistoryContext context)
         {
             _context = context;
+            ShoeMakerList = _context.ShoeMaker.Select(x => new SelectListItem() 
+            { 
+                Value = x.Id.ToString(), 
+                Text = x.Name 
+            });
         }
 
         public IActionResult OnGet()
         {
+            //var shoeMakers = _context.ShoeMaker.Select(x => new
+            //{
+            //    x.Id,
+            //    x.Name,
+            //});
+
+            //var shoeMakerList = new List<SelectListItem>();
+            //foreach (var sm in shoeMakers)
+            //{
+            //    shoeMakerList.Add(new SelectListItem() { Value = sm.Id.ToString(), Text = sm.Name });
+            //}
+            //ShoeMakerList = shoeMakerList;
             return Page();
         }
 
@@ -28,6 +47,10 @@ namespace ShoeCareHistory.Pages.Shoes
 
         public async Task<IActionResult> OnPostAsync()
         {
+            //var shoeMaker = ShoeMakerList.FirstOrDefault(x => x.Selected);
+            //Shoe.ShoeMaker.Id = int.Parse(shoeMaker.Value);
+            //Shoe.ShoeMaker.Name = shoeMaker.Text;
+
             if (!ModelState.IsValid)
             {
                 return Page();

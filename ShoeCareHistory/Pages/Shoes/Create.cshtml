@@ -14,9 +14,17 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Shoe.ShoeMaker.Name"></label>
+                <label asp-for="Shoe.ShoeMaker.Id" class="control-label"></label>
+                @Html.DropDownListFor(
+                    model => model.Shoe.ShoeMaker.Id,
+                    Model.ShoeMakerList,
+                    "",
+                    new { @class = "form-control"}
+                )
+                @Html.HiddenFor(x => x.Shoe.ShoeMaker.Name)
+                @*<label asp-for="Shoe.ShoeMaker.Name"></label>
                 <select asp-for="Shoe.ShoeMaker.Name" class="form-control" />
-                <span asp-validation-for="Shoe.ShoeMaker.Name" class="text-danger"></span>
+                <span asp-validation-for="Shoe.ShoeMaker.Name" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="Shoe.Name" class="control-label"></label>
