@@ -45,21 +45,8 @@ namespace ShoeCareHistory.Models
 
         public bool IsSold { get; set; }
 
-        //public int? ShoeMakerId { get; set; }
+        public int? ShoeMakerId { get; set; }
 
         public ShoeMaker ShoeMaker { get; set; }
-
-        //public Shoe(int id, string name, string code, string pname, string leather, string color, DateTime prdate, DateTime pudate, ShoeMaker sm)
-        //{
-        //    this.Id = id;
-        //    this.Name = name;
-        //    this.Code = code;
-        //    this.ProductName = pname;
-        //    this.Leather = leather;
-        //    this.Color = color;
-        //    this.ProductionDate = prdate;
-        //    this.PurchaseDate = pudate;
-        //    this.ShoeMaker = sm;
-        //}
     }
 }

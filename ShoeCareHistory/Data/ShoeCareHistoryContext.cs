@@ -9,7 +9,7 @@ namespace ShoeCareHistory.Models
 {
     public class ShoeCareHistoryContext : DbContext
     {
-        public ShoeCareHistoryContext (DbContextOptions<ShoeCareHistoryContext> options)
+        public ShoeCareHistoryContext(DbContextOptions<ShoeCareHistoryContext> options)
             : base(options)
         {
         }

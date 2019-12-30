@@ -16,13 +16,14 @@ namespace ShoeCareHistory.Pages.Shoes
     {
         private readonly ShoeCareHistory.Models.ShoeCareHistoryContext _context;
 
+        public IEnumerable<SelectListItem> ShoeMakerList { get; set; }
+
         public EditModel(ShoeCareHistory.Models.ShoeCareHistoryContext context)
         {
             _context = context;
         }
 
-        //[BindProperty]
-        //public ShoeVM ShoeVM { get; set; }
+        [BindProperty]
         public Shoe Shoe { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -32,31 +33,24 @@ namespace ShoeCareHistory.Pages.Shoes
                 return NotFound();
             }
 
-            Shoe = await _context.Shoe
+            var task = _context.Shoe
                 .Where(w => w.Id == id)
                 .Include(m => m.ShoeMaker)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            //.Include(m => m.ShoeMaker)
-            //.AsNoTracking()
-            //.Select(s => new ShoeVM() {
-            //    Id = s.Id,
-            //    Name = s.Name,
-            //    Code = s.Code,
-            //    Leather = s.Leather,
-            //    Color = s.Color,
-            //    Material = s.Material,
-            //    IsSold = s.IsSold,
-            //    ProductName = s.ProductName,
-            //    ProductionDate = s.ProductionDate,
-            //    PurchaseDate = s.PurchaseDate,
-            //    BreakInDate = s.BreakInDate,
-            //    ShoeMakerName = s.ShoeMaker.Name
-            //}).FirstOrDefaultAsync();
 
-            //ShoeVM.ShoeMakerList = new SelectList(_context.ShoeMaker, "", "", _context.ShoeMaker);
+            ShoeMakerList = _context.ShoeMaker
+                .Select(x => new SelectListItem()
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name,
+                });
 
-            //ViewData["ShoeMakerId"] = new SelectList(_context.ShoeMaker, "ShoeMakerId", "ShoeMakerName", ShoeVM.ShoeMaker.Id);
+            Shoe = await task;
+
+            ShoeMakerList.Where(x => x.Value == Shoe.ShoeMakerId.ToString())
+                .FirstOrDefault()
+                .Selected = true;
 
             if (Shoe == null)
             {
