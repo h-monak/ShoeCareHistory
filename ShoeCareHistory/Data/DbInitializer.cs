@@ -172,24 +172,24 @@ namespace ShoeCareHistory.Data
             {
                 var careitems = new CareItem[]
                 {
-                    new CareItem(){ Id = 1, Name= "Leather Conditioner", CareCategory = CareCategory.Oil, CareBrand = redWing },
-                    new CareItem(){ Id = 2, Name = "Boot Cream",  CareCategory = CareCategory.Cream, CareBrand = redWing, Color = "Oro Russet" },
-                    new CareItem(){ Id = 3, Name= "Delicate Cream", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Neutral" },
-                    new CareItem(){ Id = 4, Name= "Aniline Calf Cream", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Neutral"},
-                    new CareItem(){ Id = 5, Name= "Cream Naturale", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Neutral" },
-                    new CareItem(){ Id = 6, Name= "Cream Naturale", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Burgandy" },
-                    new CareItem(){ Id = 7, Name= "Cream Naturale", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Brown" },
-                    new CareItem(){ Id = 9, Name= "Shoe Cream", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Black" },
-                    new CareItem(){ Id = 10, Name= "Cordovan Cream Renovator", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Black" },
-                    new CareItem(){ Id = 11, Name= "Bees Aging Oil", CareCategory = CareCategory.Oil, CareBrand = mowbray },
-                    new CareItem(){ Id = 12, Name= "Leather Balsam", CareCategory = CareCategory.Oil, CareBrand = renapur },
-                    new CareItem(){ Id = 13, Name = "Leather Creaner", CareCategory = CareCategory.Cleaner, CareBrand= lexol },
-                    new CareItem(){ Id = 14, Name = "Leather Conditioner", CareCategory = CareCategory.Oil, CareBrand= lexol },
-                    new CareItem(){ Id = 15, Name = "Stain Remover", CareCategory = CareCategory.Cleaner,  CareBrand = mowbray },
-                    new CareItem(){ Id = 16, Name = "Stain Creansing Water", CareCategory = CareCategory.Cleaner, CareBrand = mowbray },
-                    new CareItem(){ Id = 17, Name = "Welt Cream", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Black" },
-                    new CareItem(){ Id = 18, Name = "Welt Cream", CareCategory = CareCategory.Cream, CareBrand = mowbray, Color = "Brown" },
-                    new CareItem(){ Id = 99, Name = "Extra", CareCategory = CareCategory.Extra, CareBrand = uw }
+                    new CareItem(){ Id = 1, Name= "Leather Conditioner", CareCategory = (int)CareCategory.Oil, CareBrand = redWing },
+                    new CareItem(){ Id = 2, Name = "Boot Cream",  CareCategory = (int)CareCategory.Cream, CareBrand = redWing, Color = "Oro Russet" },
+                    new CareItem(){ Id = 3, Name= "Delicate Cream", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Neutral" },
+                    new CareItem(){ Id = 4, Name= "Aniline Calf Cream", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Neutral"},
+                    new CareItem(){ Id = 5, Name= "Cream Naturale", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Neutral" },
+                    new CareItem(){ Id = 6, Name= "Cream Naturale", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Burgandy" },
+                    new CareItem(){ Id = 7, Name= "Cream Naturale", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Brown" },
+                    new CareItem(){ Id = 9, Name= "Shoe Cream", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Black" },
+                    new CareItem(){ Id = 10, Name= "Cordovan Cream Renovator", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Black" },
+                    new CareItem(){ Id = 11, Name= "Bees Aging Oil", CareCategory = (int)CareCategory.Oil, CareBrand = mowbray },
+                    new CareItem(){ Id = 12, Name= "Leather Balsam", CareCategory = (int)CareCategory.Oil, CareBrand = renapur },
+                    new CareItem(){ Id = 13, Name = "Leather Creaner", CareCategory = (int)CareCategory.Cleaner, CareBrand= lexol },
+                    new CareItem(){ Id = 14, Name = "Leather Conditioner", CareCategory = (int)CareCategory.Oil, CareBrand= lexol },
+                    new CareItem(){ Id = 15, Name = "Stain Remover", CareCategory = (int)CareCategory.Cleaner,  CareBrand = mowbray },
+                    new CareItem(){ Id = 16, Name = "Stain Creansing Water", CareCategory = (int)CareCategory.Cleaner, CareBrand = mowbray },
+                    new CareItem(){ Id = 17, Name = "Welt Cream", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Black" },
+                    new CareItem(){ Id = 18, Name = "Welt Cream", CareCategory = (int)CareCategory.Cream, CareBrand = mowbray, Color = "Brown" },
+                    new CareItem(){ Id = 99, Name = "Extra", CareCategory = (int)CareCategory.Extra, CareBrand = uw }
                 };
                 foreach (CareItem ci in careitems) context.CareItem.Add(ci);
 
