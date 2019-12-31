@@ -16,25 +16,19 @@ namespace ShoeCareHistory.Pages.Shoes
 
         public IEnumerable<SelectListItem> ShoeMakerList { get; set; }
 
+        [BindProperty]
+        public Shoe Shoe { get; set; }
+
         public CreateModel(ShoeCareHistory.Models.ShoeCareHistoryContext context)
         {
             _context = context;
-            ShoeMakerList = _context.ShoeMaker
-                                    .AsNoTracking()
-                                    .Select(x => new SelectListItem() 
-                                    { 
-                                        Value = x.Id.ToString(), 
-                                        Text = x.Name 
-                                    });
+            ShoeMakerList = new Utility.ShoeMakerUtility(_context).CreateSelector();
         }
 
         public IActionResult OnGet()
         {
             return Page();
         }
-
-        [BindProperty]
-        public Shoe Shoe { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

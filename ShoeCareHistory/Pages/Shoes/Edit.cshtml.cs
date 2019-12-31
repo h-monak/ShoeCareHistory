@@ -39,12 +39,7 @@ namespace ShoeCareHistory.Pages.Shoes
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
 
-            ShoeMakerList = _context.ShoeMaker
-                .Select(x => new SelectListItem()
-                {
-                    Value = x.Id.ToString(),
-                    Text = x.Name,
-                });
+            ShoeMakerList = new Utility.ShoeMakerUtility(_context).CreateSelector();
 
             Shoe = await task;
 

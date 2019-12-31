@@ -14,6 +14,15 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="CareItem.CareBrand" class="control-label"></label>
+                @Html.DropDownListFor(
+                       model => model.CareItem.CareBrandId,
+                       Model.SelectList,
+                       null,
+                       new { @class = "form-control" }
+                )
+            </div>
+            <div class="form-group">
                 <label asp-for="CareItem.Name" class="control-label"></label>
                 <input asp-for="CareItem.Name" class="form-control" />
                 <span asp-validation-for="CareItem.Name" class="text-danger"></span>
