@@ -19,12 +19,6 @@ namespace ShoeCareHistory.Models
         [Display(Name = "Est.")]
         public int Established { get; set; }
 
-        //public ShoeMaker(int id, string name, string country, int est_year)
-        //{
-        //    this.Id = id;
-        //    this.Name = name;
-        //    this.Country = country;
-        //    this.Established = est_year;
-        //}
+        public List<Shoe> Shoes { get; set; }
     }
 }

@@ -13,46 +13,50 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ShoeVM.Id" />
+            <input type="hidden" asp-for="Shoe.Id" />
             <div class="form-group">
-                <label asp-for="ShoeVM.ShoeMaker" class="control-label"></label>
-                <select asp-for="ShoeVM.ShoeMaker" class="form-control"></select>
-                @Html.DropDownList("ShoeMakerId", null, htmlAttributes: new { @class = "form-control" })
+                <label class="control-label">ShoeMaker</label>
+                 @Html.DropDownListFor(
+                    model => model.Shoe.ShoeMakerId,
+                    Model.ShoeMakerList,
+                    null,
+                    new { @class = "form-control" }
+                )
             </div>
             <div class="form-group">
-                <label asp-for="ShoeVM.Name" class="control-label"></label>
-                <input asp-for="ShoeVM.Name" class="form-control" />
-                <span asp-validation-for="ShoeVM.Name" class="text-danger"></span>
+                <label asp-for="Shoe.Name" class="control-label"></label>
+                <input asp-for="Shoe.Name" class="form-control" />
+                <span asp-validation-for="Shoe.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShoeVM.Code" class="control-label"></label>
-                <input asp-for="ShoeVM.Code" class="form-control" />
-                <span asp-validation-for="ShoeVM.Code" class="text-danger"></span>
+                <label asp-for="Shoe.Code" class="control-label"></label>
+                <input asp-for="Shoe.Code" class="form-control" />
+                <span asp-validation-for="Shoe.Code" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShoeVM.ProductName" class="control-label"></label>
-                <input asp-for="ShoeVM.ProductName" class="form-control" />
-                <span asp-validation-for="ShoeVM.ProductName" class="text-danger"></span>
+                <label asp-for="Shoe.ProductName" class="control-label"></label>
+                <input asp-for="Shoe.ProductName" class="form-control" />
+                <span asp-validation-for="Shoe.ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShoeVM.Leather" class="control-label"></label>
-                <input asp-for="ShoeVM.Leather" class="form-control" />
-                <span asp-validation-for="ShoeVM.Leather" class="text-danger"></span>
+                <label asp-for="Shoe.Leather" class="control-label"></label>
+                <input asp-for="Shoe.Leather" class="form-control" />
+                <span asp-validation-for="Shoe.Leather" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShoeVM.Color" class="control-label"></label>
-                <input asp-for="ShoeVM.Color" class="form-control" />
-                <span asp-validation-for="ShoeVM.Color" class="text-danger"></span>
+                <label asp-for="Shoe.Color" class="control-label"></label>
+                <input asp-for="Shoe.Color" class="form-control" />
+                <span asp-validation-for="Shoe.Color" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShoeVM.ProductionDate" class="control-label"></label>
-                <input asp-for="ShoeVM.ProductionDate" class="form-control" />
-                <span asp-validation-for="ShoeVM.ProductionDate" class="text-danger"></span>
+                <label asp-for="Shoe.ProductionDate" class="control-label"></label>
+                <input asp-for="Shoe.ProductionDate" class="form-control" />
+                <span asp-validation-for="Shoe.ProductionDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShoeVM.PurchaseDate" class="control-label"></label>
-                <input asp-for="ShoeVM.PurchaseDate" class="form-control" />
-                <span asp-validation-for="ShoeVM.PurchaseDate" class="text-danger"></span>
+                <label asp-for="Shoe.PurchaseDate" class="control-label"></label>
+                <input asp-for="Shoe.PurchaseDate" class="form-control" />
+                <span asp-validation-for="Shoe.PurchaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

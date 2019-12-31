@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ShoeCareHistory.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace ShoeCareHistory
 {
@@ -34,17 +35,19 @@ namespace ShoeCareHistory
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<ShoeCareHistoryContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ShoeCareHistoryContext")));
+
+            services.AddRazorPages();
 
             //services.AddDbContext<ShoeCareHistoryContext>(options =>
             //        options.UseSqlServer(Configuration.GetConnectionString("ShoeCareHistoryContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -59,8 +62,13 @@ namespace ShoeCareHistory
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseRouting();
+            app.UseAuthorization();
 
-            app.UseMvc();
+            app.UseEndpoints(endpoint =>
+            {
+                endpoint.MapRazorPages();
+            });
         }
     }
 }
