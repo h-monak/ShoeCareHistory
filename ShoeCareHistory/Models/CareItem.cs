@@ -18,17 +18,10 @@ namespace ShoeCareHistory.Models
 
         public int CareBrandId { get; set; }
 
-        public CareCategory CareCategory { get; set; }
+        [Range(0, 4)]
+        public int CareCategory { get; set; }
 
         public CareBrand CareBrand { get; set; }
-
-        //public CareItem(int id, string name, CareCategory category, CareBrand cb)
-        //{
-        //    this.Id = id;
-        //    this.Name = name;
-        //    this.CareCategory = category;
-        //    this.CareBrand = cb;
-        //}
     }
 
     public enum CareCategory

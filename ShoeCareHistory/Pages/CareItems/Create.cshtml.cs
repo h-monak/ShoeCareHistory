@@ -13,9 +13,12 @@ namespace ShoeCareHistory.Pages.CareItems
     {
         private readonly ShoeCareHistory.Models.ShoeCareHistoryContext _context;
 
+        public IEnumerable<SelectListItem> SelectList { get; set; }
+
         public CreateModel(ShoeCareHistory.Models.ShoeCareHistoryContext context)
         {
             _context = context;
+            SelectList = new Utility.CareBrandUtility(_context).CreateSelector();
         }
 
         public IActionResult OnGet()

@@ -16,13 +16,15 @@ namespace ShoeCareHistory.Pages.Shoes
     {
         private readonly ShoeCareHistory.Models.ShoeCareHistoryContext _context;
 
+        public IEnumerable<SelectListItem> ShoeMakerList { get; set; }
+
         public EditModel(ShoeCareHistory.Models.ShoeCareHistoryContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public ShoeVM ShoeVM { get; set; }
+        public Shoe Shoe { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,31 +33,21 @@ namespace ShoeCareHistory.Pages.Shoes
                 return NotFound();
             }
 
-            ShoeVM = await _context.Shoe
+            var task = _context.Shoe
                 .Where(w => w.Id == id)
                 .Include(m => m.ShoeMaker)
                 .AsNoTracking()
-                .Select(s => new ShoeVM() {
-                    Id = s.Id,
-                    Name = s.Name,
-                    Code = s.Code,
-                    Leather = s.Leather,
-                    Color = s.Color,
-                    Material = s.Material,
-                    IsSold = s.IsSold,
-                    ProductName = s.ProductName,
-                    ProductionDate = s.ProductionDate,
-                    PurchaseDate = s.PurchaseDate,
-                    BreakInDate = s.BreakInDate,
-                    ShoeMakerName = s.ShoeMaker.Name
-                }).FirstOrDefaultAsync();
+                .FirstOrDefaultAsync();
 
-            ShoeVM.ShoeMakerList = new SelectList(_context.ShoeMaker, "", "", _context.ShoeMaker);
+            ShoeMakerList = new Utility.ShoeMakerUtility(_context).CreateSelector();
 
-            ViewData["ShoeMakerId"] = new SelectList(_context.ShoeMaker, "ShoeMakerId", "ShoeMakerName", ShoeVM.ShoeMaker.Id);
-                //.Include(m => m.ShoeMaker).AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
+            Shoe = await task;
 
-            if (ShoeVM == null)
+            ShoeMakerList.Where(x => x.Value == Shoe.ShoeMakerId.ToString())
+                .FirstOrDefault()
+                .Selected = true;
+
+            if (Shoe == null)
             {
                 return NotFound();
             }
@@ -69,7 +61,7 @@ namespace ShoeCareHistory.Pages.Shoes
                 return Page();
             }
 
-            _context.Attach(ShoeVM).State = EntityState.Modified;
+            _context.Attach(Shoe).State = EntityState.Modified;
 
             try
             {
@@ -77,7 +69,7 @@ namespace ShoeCareHistory.Pages.Shoes
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ShoeExists(ShoeVM.Id))
+                if (!ShoeExists(Shoe.Id))
                 {
                     return NotFound();
                 }
@@ -90,7 +82,7 @@ namespace ShoeCareHistory.Pages.Shoes
             return RedirectToPage("./Index");
         }
 
-        private bool ShoeExists(int id)
+        private bool ShoeExists(int? id)
         {
             return _context.Shoe.Any(e => e.Id == id);
         }
