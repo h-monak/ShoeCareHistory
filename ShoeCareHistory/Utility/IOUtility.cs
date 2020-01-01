@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Text;
 
-namespace ShoeCareHistory.Data
+namespace ShoeCareHistory.Utility
 {
     public class IOUtility
     {
