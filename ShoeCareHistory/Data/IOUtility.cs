@@ -12,7 +12,7 @@ namespace ShoeCareHistory.Data
     {
         public async Task OutputJsonAsync<T>(IEnumerable<T> type)
         {
-            var fileName = type.GetType().Name;
+            var fileName = type.GetType().Name + ".json";
             var data = JsonConvert.SerializeObject(type, Formatting.Indented);
 
             using var writer = new StreamWriter(fileName, false, Encoding.UTF8);
