@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
+using ShoeCareHistory.Models;
 
 namespace ShoeCareHistory.Utility
 {
@@ -12,7 +13,7 @@ namespace ShoeCareHistory.Utility
     {
         public async Task OutputJsonAsync<T>(IEnumerable<T> type)
         {
-            var fileName = type.GetType().Name + ".json";
+            var fileName = Path.Combine("Data", typeof(T).Name + ".json");
             var data = JsonConvert.SerializeObject(type, Formatting.Indented);
 
             using var writer = new StreamWriter(fileName, false, Encoding.UTF8);

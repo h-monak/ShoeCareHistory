@@ -104,9 +104,30 @@ namespace ShoeCareHistory.Utility
             var values = Enum.GetValues(typeof(CareCategory));
             var selectListItems = new List<SelectListItem>();
 
-            foreach(var value in values)
+            foreach (var value in values)
             {
-                selectListItems.Add(new SelectListItem(Enum.GetName(typeof(CareCategory), value) , value.ToString()));
+                selectListItems.Add(new SelectListItem(Enum.GetName(typeof(CareCategory), value), value.ToString()));
+            }
+            return selectListItems;
+        }
+    }
+
+    public class InOutUtility : ModelUtility
+    {
+        private readonly string[] _values;
+
+        public InOutUtility(string[] values)
+        {
+            _values = values;
+        }
+
+        public override IEnumerable<SelectListItem> CreateSelector()
+        {
+            var selectListItems = new List<SelectListItem>();
+
+            foreach (var value in _values)
+            {
+                selectListItems.Add(new SelectListItem(value, value));
             }
             return selectListItems;
         }

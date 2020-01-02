@@ -10,6 +10,12 @@
     <div class="col-md-4">
         <form method="post">
             <div class="form-group">
+                @Html.DropDownListFor(
+                   model => model.SelectListItems,
+                   Model.SelectListItems,
+                   null,
+                   new { @class = "form-control" }
+                )
                 <input type="submit" class="form-control" asp-page-handler="Output" value="Output" />
                 <input type="submit" class="form-control" asp-page-handler="Input" value="Input" />
             </div>
