@@ -24,6 +24,9 @@ namespace ShoeCareHistory.Pages
                 "ShoeMaker",
             };
 
+        [BindProperty]
+        public string SelectedValue { get; set; }
+
         public IEnumerable<SelectListItem> SelectListItems { get; set; }
 
         public InOutModel(ShoeCareHistoryContext context)
@@ -38,10 +41,9 @@ namespace ShoeCareHistory.Pages
 
         public async Task<IActionResult> OnPostOutputAsync()
         {
-            var selection = SelectListItems.Where(x => x.Selected).Single();
             var io = new IOUtility();
 
-            switch (selection.Value)
+            switch (SelectedValue)
             {
                 case "CareBrand":
                     await io.OutputJsonAsync(_context.CareBrand.ToList());

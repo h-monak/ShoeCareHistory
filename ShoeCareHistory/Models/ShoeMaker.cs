@@ -18,7 +18,5 @@ namespace ShoeCareHistory.Models
 
         [Display(Name = "Est.")]
         public int Established { get; set; }
-
-        public List<Shoe> Shoes { get; set; }
     }
 }
