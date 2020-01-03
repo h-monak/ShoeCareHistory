@@ -78,6 +78,47 @@ namespace ShoeCareHistory.Pages
 
         public async Task<IActionResult> OnPostInputAsync()
         {
+            using (var tran = _context.Database.BeginTransaction())
+
+                try
+                {
+                    switch (SelectedValue)
+                    {
+                        case "CareBrand":
+                            await new CareBrandUtility(_context).CreateDataAsync();
+                            break;
+                        case "CareItem":
+                            await new CareItemUtility(_context).CreateDataAsync();
+                            break;
+                        case "Shoe":
+                            await new ShoeUtility(_context).CreateDataAsync();
+                            break;
+                        case "ShoeMaker":
+                            await new ShoeMakerUtility(_context).CreateDataAsync();
+                            break;
+                        case "History":
+                            await new HistoryUtility(_context).CreateDataAsync();
+                            break;
+                        case "All":
+                            var tasks = new List<Task>()
+                            {
+                                new CareBrandUtility(_context).CreateDataAsync(),
+                                new CareItemUtility(_context).CreateDataAsync(),
+                                new ShoeUtility(_context).CreateDataAsync(),
+                                new ShoeMakerUtility(_context).CreateDataAsync(),
+                                new HistoryUtility(_context).CreateDataAsync(),
+                            };
+                            await Task.WhenAll(tasks);
+                            break;
+                    }
+
+                    await tran.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    await tran.RollbackAsync();
+                }
+
             return Page();
         }
     }
